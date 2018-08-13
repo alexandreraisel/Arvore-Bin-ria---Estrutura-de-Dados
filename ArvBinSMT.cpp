@@ -200,19 +200,20 @@ void ordem(arvore *aux){
      }
 }
 
-//revisar
-int he=0;
-int hd=0;
+int ne=0;
+int nd=0;
+
 int nivel (arvore *aux) {
-   if (aux == NULL)
-      	return -1; // altura da árvore vazia
+   if (aux == NULL) 
+      return 0; // altura da árvore vazia
    else {
-     	he = nivel (aux->esq);
-     	hd = nivel (aux->dir);
-     	if (he < hd)
-	 		return hd + 1;
-      	else 
-			return he + 1;
+      ne = nivel (aux->esq);
+      nd = nivel (aux->dir);
+      if (ne < nd) {
+    	return nd + 1;
+	  } else{
+	  	return ne + 1;
+	  }
    }
 }
 
@@ -258,7 +259,14 @@ main(){
 				printf("\n-----------------------------------\n");
 			}
 		} else if (op==9) {
-			//nivel(raiz);
+			nivel(raiz);
+			printf("\n-----------------------------------\n");
+			if(ne>nd){
+				printf("PROFUNDIDADE MÁXIMA: %d", ne);
+			} else {
+				printf("PROFUNDIDADE MÁXIMA: %d", nd);
+			}
+			printf("\n-----------------------------------\n");
 		}
 	} while (op!=0);
 	system("pause");
